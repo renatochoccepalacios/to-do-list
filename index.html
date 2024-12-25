@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>To Do List</title>
+</head>
+
+<body class="min-h-screen bg-cover"
+    style="background-image: url('https://img.freepik.com/vector-premium/diseno-papel-tapiz-noche-luna-ilustracion-vectorial-fondo-azul-oscuro-vista-nublada-luna-llena_945339-733.jpg');">
+    <main class="flex p-14 justify-center">
+        <section class="container grid grid-cols-1 max-w-4xl ">
+            <div class="flex justify-center flex-col gap-3 bg-gray-100 p-6 shadow-neumorphism rounded-lg">
+                <h1 class="text-2xl">To do List</h1>
+                <input type="text" class="py-3 px-2 bg-white shadow-lg shadow-gray-500/50 focus:outline-none"
+                    placeholder="Escribe una nueva tarea" aria-label="Escribe una nueva tarea">
+                <ul class="grid gap-4 mt-4">
+                    <li class="flex items-center justify-between p-2">
+                        hacer tarea de coder house
+                        <div class="flex gap-2">
+                            <button class="rounded-full bg-green-500 p-1"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                </svg>
+                            </button>
+                            <button class=" bg-red-600 p-1 text-white rounded-full"
+                                aria-label="Eliminar tarea"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+</body>
+
+</html>
