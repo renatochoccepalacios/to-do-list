@@ -38,23 +38,28 @@ const mostrarTareas = () => {
         const tareaLi = document.createElement('li');
         tareaLi.classList.add('flex', 'items-center', 'justify-between', 'p-2');
         if (tarea.realizada) tareaLi.classList.add('line-through');
-        
         tareaLi.dataset.id = tarea.id; // Almacena el ID de la tarea en el atributo data-id
 
         tareaLi.innerHTML = `
-            ${tarea.tarea}
-            <div class="flex gap-2">
-            <button class="button-realizado rounded-full bg-green-500 p-1" aria-label="Marcar como realizada" data-id="${tarea.id}">
+        ${tarea.tarea}
+        <div class="flex gap-2">
+        <button class="button-realizado ${tarea.realizada ? 'bg-green-500' : 'bg-orange-500 text-white'} p-2 rounded-md" aria-label="Marcar como realizada" data-id="${tarea.id}">
+        ${tarea.realizada ? ` 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                </svg>
+            ` : `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 ">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            `}
+            </button>
+            <button class="button-eliminar bg-red-600 p-2 rounded-md text-white" aria-label="Eliminar tarea">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
                 </svg>
             </button>
-            <button class="button-eliminar bg-red-600 p-1 text-white rounded-full" aria-label="Eliminar tarea">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                </svg>
-            </button>
-            </div>
+        </div>
         `;
 
         listaTarea.appendChild(tareaLi);
