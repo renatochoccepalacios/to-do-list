@@ -1,7 +1,6 @@
 const inputTarea = document.getElementById('input-tarea');
 const formularioTarea = document.getElementById('formulario-tarea');
 const listaTarea = document.getElementById('lista-tarea');
-const buttonEliminar = document.getElementsByClassName('button-eliminar');
 const tareasArray = JSON.parse(localStorage.getItem('tareas')) || [];
 
 
@@ -22,10 +21,6 @@ const agregarTarea = (e) => {
     localStorageTareas();
     mostrarTareas()
     console.log(tareaObject);
-}
-
-const eliminarTarea = () => {
-    console.log('eliminando...')
 }
 
 const localStorageTareas = () => {
@@ -63,8 +58,12 @@ const mostrarTareas = () => {
         `;
 
         listaTarea.appendChild(tareaLi);
+
         const buttonRealizado = tareaLi.querySelector('.button-realizado');
         buttonRealizado.addEventListener('click', () => realizarTarea(tarea));
+
+        const buttonEliminar = tareaLi.querySelector('.button-eliminar');
+        buttonEliminar.addEventListener('click', () => eliminarTarea(tarea));
     });
 }
 const buttonRealizado = document.getElementsByClassName('button-realizado');
@@ -79,18 +78,14 @@ const realizarTarea = (tarea) => {
     localStorageTareas();
     mostrarTareas();
 }
-/* console.log(buttonRealizado);
-console.log(buttonEliminar); */
+
+const eliminarTarea = (tarea) => {
+    tareasArray.splice(tarea, 1);
+    localStorage.setItem('tareas', JSON.stringify(tareasArray))
+    mostrarTareas();
+}
 
 formularioTarea.addEventListener('submit', agregarTarea);
 
-// buttonRealizado.forEach((button) => {
-//     console.log(button)
-// });
-
-// realizarTarea()
-/* buttonEliminar.forEach(button => {
-    button.addEventListener('click', eliminarTarea);
-}); */
 localStorageTareas();
 mostrarTareas();
