@@ -10,6 +10,11 @@ const agregarTarea = (e) => {
     const tareaValor = inputTarea.value.trim();
     if (tareaValor === '') return;
 
+    if (tareasArray.find(tarea => tarea.tarea === tareaValor)) {
+        alert('La tarea ya existe');
+        return;
+    }
+    
     const tareaObject = {
         id: Date.now(), // Genera un ID único para cada tarea
         tarea: tareaValor,
