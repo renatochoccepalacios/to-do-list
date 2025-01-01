@@ -12,14 +12,14 @@ const agregarTarea = (e) => {
 
 
 
-    if (tareasArray.find(tarea => tarea.tarea === tareaValor)) {
+    if (tareasArray.find(tarea => tarea.text === tareaValor)) {
         alert('La tarea ya existe');
         return;
     }
 
     const tareaObject = {
         id: Date.now(), // Genera un ID único para cada tarea
-        tarea: tareaValor,
+        text: tareaValor,
         realizada: false
     }
 
@@ -44,7 +44,7 @@ const mostrarTareas = () => {
 
         tareaLi.innerHTML = `
         <div class="flex w-full justify-between items-center">
-        ${tarea.tarea}
+        ${tarea.text}
         <div class="flex gap-2">
             <button class="button-editar bg-blue-950 text-white p-2 rounded-md" aria-label="Editar tarea">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -97,7 +97,7 @@ const editarTarea = (tarea) => {
     const formEditar = document.createElement('form');
     formEditar.classList.add('form-editar', 'flex', 'gap-2', 'w-full');
     formEditar.innerHTML = `
-        <input placeholder="Edita tu tarea" value="${tarea.tarea}" class=" border rounded-md w-full" />
+        <input placeholder="Edita tu tarea" value="${tarea.text}" class=" border rounded-md w-full" />
         <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Guardar</button>
     `;
 
@@ -111,7 +111,7 @@ const editarTarea = (tarea) => {
         const nuevoValor = inputEditar.value.trim();
         if (nuevoValor === '') return;
 
-        tarea.tarea = nuevoValor;
+        tarea.text = nuevoValor;
         localStorageTareas();
         mostrarTareas();
     });
