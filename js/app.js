@@ -10,7 +10,7 @@ const agregarTarea = (e) => {
     const tareaValor = inputTarea.value.trim();
     if (tareaValor === '') return;
 
-    
+
 
     if (tareasArray.find(tarea => tarea.tarea === tareaValor)) {
         alert('La tarea ya existe');
@@ -38,14 +38,15 @@ const mostrarTareas = () => {
     listaTarea.innerHTML = '';
     tareasArray.forEach(tarea => {
         const tareaLi = document.createElement('li');
-        tareaLi.classList.add('flex', 'items-center', 'justify-between', 'p-2');
+        tareaLi.classList.add('flex', 'items-center', 'justify-between', 'p-2', 'flex-col', 'gap-4');
         if (tarea.realizada) tareaLi.classList.add('line-through');
         tareaLi.dataset.id = tarea.id; // Almacena el ID de la tarea en el atributo data-id
 
         tareaLi.innerHTML = `
+        <div class="flex w-full justify-between items-center">
         ${tarea.tarea}
         <div class="flex gap-2">
-            <button class="tarea-editar bg-blue-950 text-white p-2 rounded-md" aria-label="Editar tarea">
+            <button class="button-editar bg-blue-950 text-white p-2 rounded-md" aria-label="Editar tarea">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                     </svg>                          
@@ -67,6 +68,7 @@ const mostrarTareas = () => {
                 </svg>
             </button>
         </div>
+        </div>
         `;
 
         listaTarea.appendChild(tareaLi);
@@ -76,6 +78,9 @@ const mostrarTareas = () => {
 
         const buttonEliminar = tareaLi.querySelector('.button-eliminar');
         buttonEliminar.addEventListener('click', () => eliminarTarea(tarea));
+
+        const buttonEditar = tareaLi.querySelector('.button-editar');
+        buttonEditar.addEventListener('click', () => editarTarea(tarea));
     });
 
     if (tareasArray.length === 0) {
@@ -85,6 +90,33 @@ const mostrarTareas = () => {
         listaTarea.appendChild(parrafo);
     }
 }
+
+const editarTarea = (tarea) => {
+
+    const tareaLi = document.querySelector(`[data-id='${tarea.id}']`);
+    const formEditar = document.createElement('form');
+    formEditar.classList.add('form-editar', 'flex', 'gap-2', 'w-full');
+    formEditar.innerHTML = `
+        <input placeholder="Edita tu tarea" value="${tarea.tarea}" class=" border rounded-md w-full" />
+        <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Guardar</button>
+    `;
+
+    tareaLi.appendChild(formEditar);
+
+    const inputEditar = tareaLi.querySelector('input');
+    const editar = tareaLi.querySelector('.form-editar');
+
+    editar.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nuevoValor = inputEditar.value.trim();
+        if (nuevoValor === '') return;
+
+        tarea.tarea = nuevoValor;
+        localStorageTareas();
+        mostrarTareas();
+    });
+}
+
 const buttonRealizado = document.getElementsByClassName('button-realizado');
 
 // console.log(buttonRealizado)
