@@ -95,6 +95,12 @@ const editarTarea = (tarea) => {
 
     const tareaLi = document.querySelector(`[data-id='${tarea.id}']`);
     const formEditar = document.createElement('form');
+
+    //  si ya hay un formulario de edición, no se crea otro
+    if (tareaLi.querySelector('.form-editar')) {
+        return;
+    }
+    
     formEditar.classList.add('form-editar', 'flex', 'gap-2', 'w-full');
     formEditar.innerHTML = `
         <input placeholder="Edita tu tarea" value="${tarea.text}" class="p-2 border border-black rounded-md w-full focus:outline-none focus:border-blue-500" />
