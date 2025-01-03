@@ -100,7 +100,7 @@ const editarTarea = (tarea) => {
     if (tareaLi.querySelector('.form-editar')) {
         return;
     }
-    
+
     formEditar.classList.add('form-editar', 'flex', 'gap-2', 'w-full');
     formEditar.innerHTML = `
         <input placeholder="Edita tu tarea" value="${tarea.text}" class="p-2 border border-black rounded-md w-full focus:outline-none focus:border-blue-500" />
@@ -109,6 +109,8 @@ const editarTarea = (tarea) => {
 
     tareaLi.appendChild(formEditar);
 
+    if (tareaLi.classList.contains('line-through')) tareaLi.classList.remove('line-through');
+    
     const inputEditar = tareaLi.querySelector('input');
     const editar = tareaLi.querySelector('.form-editar');
 
