@@ -43,7 +43,7 @@ const mostrarTareas = () => {
         tareaLi.dataset.id = tarea.id; // Almacena el ID de la tarea en el atributo data-id
 
         tareaLi.innerHTML = `
-        <div class="flex w-full justify-between items-center">
+        <div class="flex w-full justify-between items-center p-2">
         ${tarea.text}
         <div class="flex gap-2">
             <button class="button-editar bg-blue-950 text-white p-2 rounded-md" aria-label="Editar tarea">
@@ -97,7 +97,7 @@ const editarTarea = (tarea) => {
     const formEditar = document.createElement('form');
     formEditar.classList.add('form-editar', 'flex', 'gap-2', 'w-full');
     formEditar.innerHTML = `
-        <input placeholder="Edita tu tarea" value="${tarea.text}" class=" border rounded-md w-full" />
+        <input placeholder="Edita tu tarea" value="${tarea.text}" class="p-2 border border-black rounded-md w-full focus:outline-none focus:border-blue-500" />
         <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Guardar</button>
     `;
 
