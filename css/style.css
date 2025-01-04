@@ -6,3 +6,11 @@
 .p-da {
     text-decoration:double;
 }
+
+.bg-verde-pastel {
+    background-color: rgb(100, 206, 139);
+}
+
+.bg-naranja-pastel {
+    background-color: rgb(206, 172, 100);
+}

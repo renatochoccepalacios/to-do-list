@@ -38,15 +38,14 @@ const mostrarTareas = () => {
     listaTarea.innerHTML = '';
     tareasArray.forEach(tarea => {
         const tareaLi = document.createElement('li');
-        tareaLi.classList.add('flex', 'items-end', 'justify-between', 'p-2', 'flex-col', 'gap-4');
-        if (tarea.realizada) tareaLi.classList.add('line-through');
+        tareaLi.classList.add('flex', 'items-end', 'justify-between', 'flex-col', 'gap-4');
         tareaLi.dataset.id = tarea.id; // Almacena el ID de la tarea en el atributo data-id
 
         const hora = new Date(tarea.id);
 
         tareaLi.innerHTML = `
-        ${hora.getDate()}/${hora.getMonth() + 1}/${hora.getFullYear()}  -  ${hora.getHours()}:${hora.getMinutes()}
-        <div class="flex w-full justify-between items-center p-2  bg-gray-300">
+        ${hora.getDate()}/${hora.getMonth() + 1}/${hora.getFullYear()}  -  ${hora.getHours()}:${hora.getMinutes().toString().padStart(2, '0')}
+        <div class="flex w-full justify-between items-center p-2 rounded-lg  ${tarea.realizada ? 'bg-verde-pastel line-through' : 'bg-naranja-pastel'}">
         ${tarea.text}
         <div class="flex gap-2">
             <button class="button-editar bg-blue-950 text-white p-2 rounded-md" aria-label="Editar tarea">
