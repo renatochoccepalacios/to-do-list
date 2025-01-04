@@ -128,6 +128,7 @@ const editarTarea = (tarea) => {
 }
 
 const resetearTareas = () => {
+    alert('Se eliminarán todas las tareas');
     localStorage.removeItem('tareas');
     tareasArray.length = 0;
     mostrarTareas();
