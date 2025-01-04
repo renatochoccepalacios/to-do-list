@@ -2,7 +2,7 @@ const inputTarea = document.getElementById('input-tarea');
 const formularioTarea = document.getElementById('formulario-tarea');
 const listaTarea = document.getElementById('lista-tarea');
 const tareasArray = JSON.parse(localStorage.getItem('tareas')) || [];
-
+const buttonReset = document.getElementById('resetButton');
 
 const agregarTarea = (e) => {
     e.preventDefault();
@@ -127,6 +127,12 @@ const editarTarea = (tarea) => {
     });
 }
 
+const resetearTareas = () => {
+    localStorage.removeItem('tareas');
+    tareasArray.length = 0;
+    mostrarTareas();
+}
+
 const buttonRealizado = document.getElementsByClassName('button-realizado');
 
 // console.log(buttonRealizado)
@@ -147,6 +153,7 @@ const eliminarTarea = (tarea) => {
 }
 
 formularioTarea.addEventListener('submit', agregarTarea);
+buttonReset.addEventListener('click', resetearTareas);
 
 localStorageTareas();
 mostrarTareas();
