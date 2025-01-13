@@ -112,7 +112,7 @@ const editarTarea = (tarea) => {
     tareaLi.appendChild(formEditar);
 
     if (tareaLi.classList.contains('line-through')) tareaLi.classList.remove('line-through');
-    
+
     const inputEditar = tareaLi.querySelector('input');
     const editar = tareaLi.querySelector('.form-editar');
 
@@ -148,9 +148,27 @@ const realizarTarea = (tarea) => {
 }
 
 const eliminarTarea = (tarea) => {
-    tareasArray.splice(tarea, 1);
-    localStorage.setItem('tareas', JSON.stringify(tareasArray))
-    mostrarTareas();
+    Swal.fire({
+        title: "¿Estás seguro que deseas eliminar esta tarea?",
+        text: "¡No podrás revertir esta acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, elimínala"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            tareasArray.splice(tarea, 1);
+            localStorage.setItem('tareas', JSON.stringify(tareasArray))
+            mostrarTareas();
+            Swal.fire({
+                title: "¡Tarea eliminada!",
+                text: "La tarea ha sido eliminada exitosamente.",
+                icon: "success"
+            });
+        }
+    });
+
 }
 
 formularioTarea.addEventListener('submit', agregarTarea);
