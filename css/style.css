@@ -14,3 +14,7 @@
 .bg-naranja-pastel {
     background-color: rgb(206, 172, 100);
 }
+
+.toast {
+    opacity: 1 !important; /* Asegura que no cambie la opacidad */
+}

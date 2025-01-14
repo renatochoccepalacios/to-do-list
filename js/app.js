@@ -28,6 +28,26 @@ const agregarTarea = (e) => {
     localStorageTareas();
     mostrarTareas()
     console.log(tareaObject);
+
+
+    Command: toastr["success"]("La tarea ha sido añadida a tu lista con éxito.", "¡Tarea Agregada!")
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 }
 
 const localStorageTareas = () => {
@@ -38,14 +58,14 @@ const mostrarTareas = () => {
     listaTarea.innerHTML = '';
     tareasArray.forEach(tarea => {
         const tareaLi = document.createElement('li');
-        tareaLi.classList.add('flex', 'items-end', 'justify-between', 'flex-col', 'gap-4');
+        tareaLi.classList.add('flex', 'items-end', 'justify-between', 'flex-col', 'gap-4', 'overflow-auto');
         tareaLi.dataset.id = tarea.id; // Almacena el ID de la tarea en el atributo data-id
 
         const hora = new Date(tarea.id);
 
         tareaLi.innerHTML = `
         ${hora.getDate()}/${hora.getMonth() + 1}/${hora.getFullYear()}  -  ${hora.getHours()}:${hora.getMinutes().toString().padStart(2, '0')}
-        <div class="flex w-full justify-between items-center p-2 rounded-lg  ${tarea.realizada ? 'bg-verde-pastel line-through' : 'bg-naranja-pastel'}">
+        <div class="flex w-full justify-between items-center p-2 rounded-lg ${tarea.realizada ? 'bg-verde-pastel line-through' : 'bg-naranja-pastel'} gap-3 overflow-x-auto">
         ${tarea.text}
         <div class="flex gap-2">
             <button class="button-editar bg-blue-950 text-white p-2 rounded-md" aria-label="Editar tarea">
