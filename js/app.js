@@ -148,10 +148,29 @@ const editarTarea = (tarea) => {
 }
 
 const resetearTareas = () => {
-    alert('Se eliminarán todas las tareas');
-    localStorage.removeItem('tareas');
-    tareasArray.length = 0;
-    mostrarTareas();
+    Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Esto reiniciará todos los datos y no se podrá deshacer.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, reiniciar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "¡Reiniciado!",
+                text: "Los datos se han restablecido con éxito.",
+                icon: "success"
+            });
+
+            localStorage.removeItem('tareas');
+            tareasArray.length = 0;
+            mostrarTareas();
+        }
+    });
+
 }
 
 const buttonRealizado = document.getElementsByClassName('button-realizado');
