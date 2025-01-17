@@ -13,8 +13,44 @@ const agregarTarea = (e) => {
 
 
     if (tareasArray.find(tarea => tarea.text === tareaValor)) {
-        alert('La tarea ya existe');
+        Command: toastr["warning"]("No puedes agregar la misma tarea", "¡Tarea Duplicada!")
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
         return;
+    } else {
+        Command: toastr["success"]("La tarea ha sido añadida a tu lista con éxito.", "¡Tarea Agregada!")
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
     }
 
     const tareaObject = {
@@ -30,24 +66,7 @@ const agregarTarea = (e) => {
     console.log(tareaObject);
 
 
-    Command: toastr["success"]("La tarea ha sido añadida a tu lista con éxito.", "¡Tarea Agregada!")
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "1000",
-        "timeOut": "5000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    }
+
 }
 
 const localStorageTareas = () => {
@@ -58,13 +77,13 @@ const mostrarTareas = () => {
     listaTarea.innerHTML = '';
     tareasArray.forEach(tarea => {
         const tareaLi = document.createElement('li');
-        tareaLi.classList.add('flex', 'items-end', 'justify-between', 'flex-col', 'gap-4', 'overflow-auto');
+        tareaLi.classList.add('flex', 'items-end', 'justify-between', 'flex-col', 'gap-4', 'overflow-auto', 'text-nowrap');
         tareaLi.dataset.id = tarea.id; // Almacena el ID de la tarea en el atributo data-id
 
         const hora = new Date(tarea.id); // Se crea un nuevo objeto de fecha usando el ID de la tarea, que es un número de milisegundos desde 1970.
 
-        const fechaTexto = document.createTextNode(`${hora.getDate()}/${hora.getMonth() + 1}/${hora.getFullYear()}  -  ${hora.getHours()}:${hora.getMinutes().toString().padStart(2, '0')}`);
-        tareaLi.appendChild(fechaTexto);
+        // const fechaTexto = document.createTextNode(`${hora.getDate()}/${hora.getMonth() + 1}/${hora.getFullYear()}  -  ${hora.getHours()}:${hora.getMinutes().toString().padStart(2, '0')}`);
+        // tareaLi.appendChild(fechaTexto);
 
         const divTarea = document.createElement('div');
         divTarea.classList.add('flex', 'w-full', 'justify-between', 'items-center', 'p-2', 'rounded-lg', tarea.realizada ? 'bg-verde-pastel' : 'bg-naranja-pastel', 'gap-3', 'overflow-x-auto');
