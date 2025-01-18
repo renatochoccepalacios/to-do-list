@@ -86,7 +86,7 @@ const mostrarTareas = () => {
         // tareaLi.appendChild(fechaTexto);
 
         const divTarea = document.createElement('div');
-        divTarea.classList.add('flex', 'w-full', 'justify-between', 'items-center', 'p-2', 'rounded-lg', tarea.realizada ? 'bg-verde-pastel' : 'bg-naranja-pastel', 'gap-3', 'overflow-x-auto');
+        divTarea.classList.add('flex', 'w-full', 'justify-between', 'items-center', 'p-2', 'rounded-lg', tarea.realizada ? 'bg-green-500' : 'bg-orange-400', 'gap-3', 'overflow-x-auto');        
         tareaLi.appendChild(divTarea);
 
         const tareaTexto = document.createTextNode(tarea.text);
@@ -107,7 +107,7 @@ const mostrarTareas = () => {
         divBotones.appendChild(buttonEditar);
 
         const buttonRealizado = document.createElement('button');
-        buttonRealizado.classList.add('button-realizado', tarea.realizada ? 'bg-green-500' : 'bg-orange-500', 'text-white', 'p-2', 'rounded-md');
+        buttonRealizado.classList.add('button-realizado', tarea.realizada ? 'bg-green-600' : 'bg-orange-500', 'text-white', 'p-2', 'rounded-md');
         buttonRealizado.setAttribute('aria-label', 'Marcar como realizada');
         buttonRealizado.setAttribute('data-id', tarea.id);
         buttonRealizado.innerHTML = tarea.realizada ? `
